@@ -6,8 +6,55 @@
 html {
   font-size: 62.5%; }
 
-.main__list {
-  padding-left: 2rem;
-  padding-bottom: 20px; }
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fbe8d7; }
+  .link:hover {
+    color: #000; }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto; }
+  .header .title {
+    font-family: "Cherry Bomb One", cursive;
+    font-size: 5rem; }
+  .header__img {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    -o-object-fit: cover;
+    object-fit: cover; }
+
+.main-index {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 70px 0; }
+  .main-index .button-start {
+    width: 200px;
+    padding: 20px 10px;
+    border-radius: 50px;
+    border: 4px solid #c27434;
+    background-color: #f2b150;
+    color: #fbe8d7;
+    font-size: 3rem; }
+    .main-index .button-start p::first-letter {
+      text-transform: capitalize; }
+
+body {
+  background-color: #fbe8d7;
+  /*  opacity: 0.8; */
+  background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fbe8d7 2.6px);
+  background-size: 52px 52px; }
+
+.container {
+  padding: 10rem 3rem;
+  width: 100%;
+  height: 100vh; }
 
 /*# sourceMappingURL=main.css.map */

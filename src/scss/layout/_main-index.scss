@@ -1,0 +1,19 @@
+.main-index {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 70px 0;
+  .button-start {
+    width: 200px;
+    padding: 20px 10px;
+    border-radius: 50px;
+    border: 4px solid $color-brown;
+    background-color: $color-orange;
+    color: $color-light-yellow;
+    font-size: 3rem;
+
+    p::first-letter {
+      text-transform: capitalize;
+    }
+  }
+}

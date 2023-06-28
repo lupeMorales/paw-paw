@@ -1,8 +1,19 @@
 .main-index {
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  padding: 70px 0;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
+    font-family: $font-special;
+    font-size: 5rem;
+  }
+  .img-index {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    object-fit: cover;
+  }
   .button-start {
     width: 200px;
     padding: 20px 10px;

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paw Paw</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,22 +14,11 @@
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="icon" href="./assets/images/favicon.png" />
   </head>
-
   <body>
-    <div class="page__index">
-      <main class="main-index">
-        <h1 class="title">PAW PAW</h1>
-        <img
-          src="./assets/images/PAW-PAW.png"
-          alt="puppies peeking"
-          class="img-index"
-        />
-        <button class="button-start">
-          <a class="link" href="./game.html"><p>let´start</p></a>
-        </button>
-      </main>
-
+    <div class="page__game">
+      <include src="./partials/header.html"></include>
     </div>
+    <script src="./assets/js/game.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

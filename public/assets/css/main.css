@@ -12,11 +12,12 @@ html {
   cursor: pointer;
   color: #fbe8d7; }
   .link:hover {
-    color: #000; }
+    /*  color: $color-black; */
+    text-transform: uppercase; }
 
 .main-index {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column; }
   .main-index .title {
@@ -29,23 +30,25 @@ html {
     -o-object-fit: cover;
     object-fit: cover; }
   .main-index .button-start {
-    width: 200px;
-    padding: 20px 10px;
+    width: 210px;
+    margin-top: 120px;
+    padding: 15px 10px;
     border-radius: 50px;
     border: 4px solid #c27434;
     background-color: #f2b150;
     color: #fbe8d7;
-    font-size: 3rem; }
+    font-size: 2.8rem;
+    cursor: pointer; }
     .main-index .button-start p::first-letter {
       text-transform: capitalize; }
+    .main-index .button-start:hover {
+      background-color: #c27434; }
 
-body {
+.page__index {
   background-color: #fbe8d7;
   /*  opacity: 0.8; */
   background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fbe8d7 2.6px);
-  background-size: 52px 52px; }
-
-.page__index {
+  background-size: 52px 52px;
   padding: 10rem 3rem;
   width: 100%;
   height: 100vh; }

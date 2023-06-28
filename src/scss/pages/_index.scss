@@ -1,11 +1,11 @@
-body {
+.page__index {
+  // background pattern
   background-color: $color-light-yellow;
   /*  opacity: 0.8; */
   background-image: linear-gradient($color-orange 2.6px, transparent 2.6px),
     linear-gradient(to right, $color-orange 2.6px, $color-light-yellow 2.6px);
   background-size: 52px 52px;
-}
-.page__index {
+
   padding: 10rem 3rem;
   width: 100%;
   height: 100vh;

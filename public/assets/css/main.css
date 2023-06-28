@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%; }
+
+.main__list {
+  padding-left: 2rem;
+  padding-bottom: 20px; }
+
+/*# sourceMappingURL=main.css.map */

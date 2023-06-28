@@ -38,11 +38,6 @@
     display: grid;
     justify-content: center;
 
-    @media all and (min-width: 1024px) {
-      position: absolute;
-      left: 10%;
-      bottom: 10px;
-    }
     .btns {
       display: grid;
       gap: 5px;
@@ -67,11 +62,13 @@
 
     .btn-arrow {
       display: block;
-      background-color: rgba(255, 255, 255, 0.9);
-      border: 1px #ddd;
-      color: #333;
+      background-color: $color-light-yellow;
+      border: 1px $color-yellow;
+      color: $color-black;
       padding: 8px 10px;
       font-size: 14px;
+      font-weight: bold;
+      font-family: $font-special;
       border-radius: 6px;
       text-align: center;
       align-self: end;

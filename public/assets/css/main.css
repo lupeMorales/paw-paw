@@ -86,11 +86,6 @@ html {
   .game .grid-btns {
     display: grid;
     justify-content: center; }
-    @media all and (min-width: 1024px) {
-      .game .grid-btns {
-        position: absolute;
-        left: 10%;
-        bottom: 10px; } }
     .game .grid-btns .btns {
       display: grid;
       gap: 5px;
@@ -107,11 +102,13 @@ html {
       grid-row: 1 / span 2; }
     .game .grid-btns .btn-arrow {
       display: block;
-      background-color: rgba(255, 255, 255, 0.9);
-      border: 1px #ddd;
-      color: #333;
+      background-color: #fbe8d7;
+      border: 1px #fabd5a;
+      color: #000;
       padding: 8px 10px;
       font-size: 14px;
+      font-weight: bold;
+      font-family: "Cherry Bomb One", cursive;
       border-radius: 6px;
       text-align: center;
       align-self: end;
@@ -152,6 +149,10 @@ html {
   }
 } */
 .footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,7 +169,8 @@ html {
   /*  opacity: 0.8; */
   background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fabd5a 2.6px);
   background-size: 52px 52px;
-  position: relative; }
+  position: relative;
+  height: 100vh; }
 
 .page__index {
   background-color: #fabd5a;

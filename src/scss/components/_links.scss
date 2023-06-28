@@ -8,3 +8,12 @@
     color: $color-brown;
   }
 }
+
+.link-footer {
+  text-decoration: none;
+  cursor: pointer;
+  color: $color-black;
+  :hover {
+    color: $color-brown;
+  }
+}

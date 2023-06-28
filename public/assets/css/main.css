@@ -16,6 +16,13 @@ html {
     font-weight: bold;
     color: #c27434; }
 
+.link-footer {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000; }
+  .link-footer :hover {
+    color: #c27434; }
+
 .main-index {
   display: flex;
   justify-content: space-evenly;
@@ -144,6 +151,18 @@ html {
     display: block;
   }
 } */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #fbe8d7; }
+  .footer__text {
+    font-size: 1.8rem; }
+    .footer__text .logo {
+      font-family: "Cherry Bomb One", cursive;
+      font-size: 2.4rem; }
+
 .page__game {
   background-color: #fabd5a;
   /*  opacity: 0.8; */

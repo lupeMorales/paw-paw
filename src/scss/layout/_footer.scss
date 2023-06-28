@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: $color-light-yellow;
+  &__text {
+    font-size: 1.8rem;
+    .logo {
+      font-family: $font-special;
+      font-size: 2.4rem;
+    }
+  }
+}

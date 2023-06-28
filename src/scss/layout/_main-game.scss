@@ -1,12 +1,21 @@
-h2 {
+.title__game {
   font-family: $font-special;
-  font-size: 4rem;
   text-align: center;
   padding-top: 20px;
+  display: block;
+  font-size: 5rem;
   @media all and (min-width: 1024px) {
-    font-size: 7rem;
+    display: none;
+  }
+  &-desktop {
+    display: none;
+    font-size: 5rem;
+    @media all and (min-width: 1024px) {
+      display: block;
+    }
   }
 }
+
 .game {
   display: flex;
   align-items: center;
@@ -24,24 +33,6 @@ h2 {
     border: 4px solid $color-brown;
     background-color: $color-light-yellow;
     border-radius: 8px;
-  }
-  &__info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column-reverse;
-    margin-top: 30px;
-    gap: 20px;
-    .info {
-      width: 280px;
-      background-color: $color-light-yellow;
-      border-radius: 8px;
-      padding: 20px;
-    }
-  }
-
-  h3 {
-    font-size: 2.5rem;
   }
   .grid-btns {
     display: grid;
@@ -97,3 +88,35 @@ h2 {
     }
   }
 }
+
+.game__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+  .info {
+    width: 280px;
+    background-color: $color-light-yellow;
+    border-radius: 71% 29% 85% 15% / 34% 62% 38% 66%;
+    padding: 40px;
+    list-style: none;
+    li {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media all and (min-width: 1024px) {
+    flex-direction: column;
+  }
+}
+/* 
+.img-game {
+  display: none;
+  width: 100%;
+  max-width: 350px;
+  object-fit: cover;
+  @media all and (min-width: 1024px) {
+    display: block;
+  }
+} */

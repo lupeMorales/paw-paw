@@ -3,7 +3,8 @@
   cursor: pointer;
   color: $color-light-yellow;
   &:hover {
-    /*  color: $color-black; */
     text-transform: uppercase;
+    font-weight: bold;
+    color: $color-brown;
   }
 }

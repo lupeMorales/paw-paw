@@ -1,0 +1,99 @@
+h2 {
+  font-family: $font-special;
+  font-size: 4rem;
+  text-align: center;
+  padding-top: 20px;
+  @media all and (min-width: 1024px) {
+    font-size: 7rem;
+  }
+}
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  width: 100%;
+  height: auto;
+
+  @media all and (min-width: 1024px) {
+    flex-direction: row;
+    gap: 20px;
+  }
+  canvas {
+    border: 4px solid $color-brown;
+    background-color: $color-light-yellow;
+    border-radius: 8px;
+  }
+  &__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+    gap: 20px;
+    .info {
+      width: 280px;
+      background-color: $color-light-yellow;
+      border-radius: 8px;
+      padding: 20px;
+    }
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+  .grid-btns {
+    display: grid;
+    justify-content: center;
+
+    @media all and (min-width: 1024px) {
+      position: absolute;
+      left: 10%;
+      bottom: 10px;
+    }
+    .btns {
+      display: grid;
+      gap: 5px;
+      justify-self: center;
+      padding: 10px;
+      width: 220px;
+    }
+
+    .btn-item {
+      align-self: end;
+    }
+
+    .item-left {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .item-right {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+
+    .btn-arrow {
+      display: block;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px #ddd;
+      color: #333;
+      padding: 8px 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      text-align: center;
+      align-self: end;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+      width: 70px;
+    }
+    .btn-arrow:hover {
+      background-color: rgba(253, 253, 255, 0.85);
+    }
+
+    .btn-arrow:active {
+      background-color: rgba(250, 250, 255, 0.85);
+      box-shadow: 0.5px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

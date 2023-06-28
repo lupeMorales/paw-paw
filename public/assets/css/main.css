@@ -12,8 +12,9 @@ html {
   cursor: pointer;
   color: #fbe8d7; }
   .link:hover {
-    /*  color: $color-black; */
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #c27434; }
 
 .main-index {
   display: flex;
@@ -35,19 +36,104 @@ html {
     padding: 15px 10px;
     border-radius: 50px;
     border: 4px solid #c27434;
-    background-color: #f2b150;
-    color: #fbe8d7;
-    font-size: 2.8rem;
-    cursor: pointer; }
+    background-color: #c27434;
+    font-size: 2.8rem; }
     .main-index .button-start p::first-letter {
       text-transform: capitalize; }
     .main-index .button-start:hover {
-      background-color: #c27434; }
+      background-color: #f2b150;
+      color: #c27434; }
+
+h2 {
+  font-family: "Cherry Bomb One", cursive;
+  font-size: 4rem;
+  text-align: center;
+  padding-top: 20px; }
+  @media all and (min-width: 1024px) {
+    h2 {
+      font-size: 7rem; } }
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  width: 100%;
+  height: auto; }
+  @media all and (min-width: 1024px) {
+    .game {
+      flex-direction: row;
+      gap: 20px; } }
+  .game canvas {
+    border: 4px solid #c27434;
+    background-color: #fbe8d7;
+    border-radius: 8px; }
+  .game__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+    gap: 20px; }
+    .game__info .info {
+      width: 280px;
+      background-color: #fbe8d7;
+      border-radius: 8px;
+      padding: 20px; }
+  .game h3 {
+    font-size: 2.5rem; }
+  .game .grid-btns {
+    display: grid;
+    justify-content: center; }
+    @media all and (min-width: 1024px) {
+      .game .grid-btns {
+        position: absolute;
+        left: 10%;
+        bottom: 10px; } }
+    .game .grid-btns .btns {
+      display: grid;
+      gap: 5px;
+      justify-self: center;
+      padding: 10px;
+      width: 220px; }
+    .game .grid-btns .btn-item {
+      align-self: end; }
+    .game .grid-btns .item-left {
+      grid-column: 1;
+      grid-row: 1 / span 2; }
+    .game .grid-btns .item-right {
+      grid-column: 3;
+      grid-row: 1 / span 2; }
+    .game .grid-btns .btn-arrow {
+      display: block;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px #ddd;
+      color: #333;
+      padding: 8px 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      text-align: center;
+      align-self: end;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+      width: 70px; }
+    .game .grid-btns .btn-arrow:hover {
+      background-color: rgba(253, 253, 255, 0.85); }
+    .game .grid-btns .btn-arrow:active {
+      background-color: rgba(250, 250, 255, 0.85);
+      box-shadow: 0.5px 1px 2px rgba(0, 0, 0, 0.3); }
+
+.page__game {
+  background-color: #fabd5a;
+  /*  opacity: 0.8; */
+  background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fabd5a 2.6px);
+  background-size: 52px 52px;
+  position: relative; }
 
 .page__index {
-  background-color: #fbe8d7;
+  background-color: #fabd5a;
   /*  opacity: 0.8; */
-  background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fbe8d7 2.6px);
+  background-image: linear-gradient(#f2b150 2.6px, transparent 2.6px), linear-gradient(to right, #f2b150 2.6px, #fabd5a 2.6px);
   background-size: 52px 52px;
   padding: 10rem 3rem;
   width: 100%;

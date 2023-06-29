@@ -82,7 +82,8 @@ html {
   .game canvas {
     border: 4px solid #c27434;
     background-color: #fbe8d7;
-    border-radius: 8px; }
+    border-radius: 8px;
+    /*     padding: 5px; */ }
   .game .grid-btns {
     display: grid;
     justify-content: center; }

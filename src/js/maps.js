@@ -1,12 +1,4 @@
 "use strict";
-
-console.log("esto es game, si lo digo!");
-
-'use strict';
-
-console.log('>> Ready :)');
-
-"use strict";
 const emojis = {
   "-": " ",
   O: "🏠",
@@ -54,5 +46,3 @@ maps.push(`
     XX-----OXX
     XXXXXXXXXX
   `);
-
-//# sourceMappingURL=main.js.map

@@ -7,20 +7,14 @@ const down = document.querySelector(".item-down");
 const right = document.querySelector(".item-right");
 const left = document.querySelector(".item-left");
 
-/* const move = (key) => {
-  return () => {
-    console.log(`Pressed: ${key}`);
-  };
-};
-const moveByKey = (ev) => {
-  if (ev.key == "ArrowUp") {
-    console.log("up");
-  }
-}; */
-
 let canvasSize;
 let elementSize;
 let level = 0;
+
+let playerPosition = {
+  x: undefined,
+  y: undefined,
+};
 
 function startGame() {
   console.log("let's go");
@@ -32,9 +26,9 @@ function startGame() {
   renderMap(level);
 }
 
-function renderMap(level) {
+function renderMap() {
   //crear array bidimensional a partir de nuestro map
-  const map = maps[level];
+  const map = maps[2];
   const mapRows = map.trim().split("\n");
   const actualMap = mapRows.map((row) => row.trim().split(""));
   console.log({ mapRows, actualMap });
@@ -50,14 +44,20 @@ function renderMap(level) {
   } */
   //se puede hacer con forEach
   actualMap.forEach((row, indexRow) => {
-    row.forEach((col, indexCol) =>
-      game.fillText(
-        emojis[col],
-        elementSize * (indexCol + 1),
-        elementSize * (indexRow + 1)
-      )
-    );
+    row.forEach((col, indexCol) => {
+      const posX = indexCol + 1;
+      const posY = indexRow + 1;
+      if (col == "O") {
+        playerPosition.x = posX;
+        playerPosition.y = posY;
+        console.log({ playerPosition });
+      }
+      game.fillText(emojis[col], elementSize * posX, elementSize * posY);
+    });
   });
+
+  game.fillText(emojis["PLAYER"], 8, 9);
+  console.log(playerPosition.x);
 }
 
 function setCanvasSize() {

@@ -7,6 +7,9 @@
   .title {
     font-family: $font-special;
     font-size: 5rem;
+    padding: 20px;
+    background-color: $color-light-yellow;
+    border-radius: 76% 24% 70% 30% / 57% 76% 24% 43%;
   }
   .img-index {
     display: block;

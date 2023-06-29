@@ -30,7 +30,10 @@ html {
   flex-direction: column; }
   .main-index .title {
     font-family: "Cherry Bomb One", cursive;
-    font-size: 5rem; }
+    font-size: 5rem;
+    padding: 20px;
+    background-color: #fbe8d7;
+    border-radius: 76% 24% 70% 30% / 57% 76% 24% 43%; }
   .main-index .img-index {
     display: block;
     width: 100%;

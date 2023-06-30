@@ -10,7 +10,7 @@ const btnLeft = document.querySelector(".item-left");
 let canvasSize;
 let elementSize;
 
-let level = 0;
+let level = 1;
 
 let playerPosition = {
   x: undefined,
@@ -68,16 +68,20 @@ function renderMapLevel(level) {
   } */
 }
 function moveUp() {
-  console.log("up");
+  playerPosition.y -= elementSize;
+  getPlayerPosition();
 }
 function moveDown() {
-  console.log("down");
+  playerPosition.y += elementSize;
+  getPlayerPosition();
 }
 function moveLeft() {
-  console.log("left");
+  playerPosition.x -= elementSize;
+  getPlayerPosition();
 }
 function moveRight() {
-  console.log("right");
+  playerPosition.x += elementSize;
+  getPlayerPosition();
 }
 function moveByKeys(ev) {
   if (ev.key == "ArrowUp") moveUp();
@@ -89,10 +93,10 @@ function moveByKeys(ev) {
 function startGame() {
   console.log("starting game");
   renderMapLevel(level);
-  initialPlayerPosition();
+  getPlayerPosition();
 }
 
-function initialPlayerPosition() {
+function getPlayerPosition() {
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
   console.log(playerPosition);
 }

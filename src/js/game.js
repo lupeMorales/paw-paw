@@ -2,12 +2,86 @@
 const canvas = document.querySelector(".js-canvas");
 const game = canvas.getContext("2d");
 
-const up = document.querySelector(".item-up");
-const down = document.querySelector(".item-down");
-const right = document.querySelector(".item-right");
-const left = document.querySelector(".item-left");
+const btnUp = document.querySelector(".item-up");
+const btnDown = document.querySelector(".item-down");
+const btnRight = document.querySelector(".item-right");
+const btnLeft = document.querySelector(".item-left");
 
 let canvasSize;
+let elementSize;
+
+let level = 0;
+
+function setCanvasSize() {
+  //game screen size
+  if (window.innerHeight > window.innerWidth) {
+    canvasSize = window.innerWidth * 0.75;
+  } else {
+    canvasSize = window.innerHeight * 0.75;
+  }
+
+  canvas.setAttribute("width", canvasSize);
+  canvas.setAttribute("height", canvasSize);
+
+  //elements size
+  elementSize = canvasSize / 10 - 1;
+  game.font = elementSize + "px Verdana";
+  game.textAlign = "end";
+
+  start();
+}
+
+function renderMapLevel(level) {
+  const mapLevel = maps[level].trim().split("\n");
+  // this is a bidimensional array
+  const actualMapLevel = mapLevel.map((row) => row.trim().split(""));
+
+  console.log({ mapLevel, actualMapLevel });
+
+  for (let i = 1; i <= 10; i++) {
+    for (let j = 1; j <= 10; j++) {
+      game.fillText(
+        emojis[actualMapLevel[j - 1][i - 1]],
+        elementSize * i,
+        elementSize * j
+      );
+    }
+  }
+}
+function moveUp() {
+  console.log("up");
+}
+function moveDown() {
+  console.log("down");
+}
+function moveLeft() {
+  console.log("left");
+}
+function moveRight() {
+  console.log("right");
+}
+function moveByKeys(ev) {
+  if (ev.key == "ArrowUp") moveUp();
+  else if (ev.key == "ArrowDown") moveDown();
+  else if (ev.key == "ArrowLeft") moveLeft();
+  else if (ev.key == "ArrowRight") moveRight();
+}
+function start() {
+  console.log("starting game");
+  renderMapLevel(level);
+}
+
+// events
+window.addEventListener("load", setCanvasSize);
+window.addEventListener("resize", setCanvasSize);
+window.addEventListener("keydown", moveByKeys);
+
+btnUp.addEventListener("click", moveUp);
+btnDown.addEventListener("click", moveDown);
+btnRight.addEventListener("click", moveRight);
+btnLeft.addEventListener("click", moveLeft);
+
+/* let canvasSize;
 let elementSize;
 let level = 0;
 
@@ -42,8 +116,8 @@ function renderMap() {
       );
     }
   } */
-  //se puede hacer con forEach
-  actualMap.forEach((row, indexRow) => {
+//se puede hacer con forEach
+/*   actualMap.forEach((row, indexRow) => {
     row.forEach((col, indexCol) => {
       const posX = indexCol + 1;
       const posY = indexRow + 1;
@@ -99,4 +173,4 @@ left.addEventListener("click", moveLeft);
 window.addEventListener("keydown", moveByKeys);
 
 window.addEventListener("load", setCanvasSize);
-window.addEventListener("resize", setCanvasSize);
+window.addEventListener("resize", setCanvasSize); */

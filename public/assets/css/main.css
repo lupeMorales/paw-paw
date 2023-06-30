@@ -68,7 +68,10 @@ html {
     font-size: 5rem; }
     @media all and (min-width: 1024px) {
       .title__game-desktop {
-        display: block; } }
+        display: block;
+        padding: 15px;
+        background-color: #fbe8d7;
+        border-radius: 76% 24% 70% 30% / 57% 76% 24% 43%; } }
 
 .game {
   display: flex;
@@ -86,7 +89,7 @@ html {
     border: 4px solid #c27434;
     background-color: #fbe8d7;
     border-radius: 8px;
-    /*     padding: 5px; */ }
+    padding: 3px; }
   .game .grid-btns {
     display: grid;
     justify-content: center; }
@@ -119,7 +122,8 @@ html {
       box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
       width: 70px; }
     .game .grid-btns .btn-arrow:hover {
-      background-color: rgba(253, 253, 255, 0.85); }
+      background-color: #c27434;
+      color: #fbe8d7; }
     .game .grid-btns .btn-arrow:active {
       background-color: rgba(250, 250, 255, 0.85);
       box-shadow: 0.5px 1px 2px rgba(0, 0, 0, 0.3); }

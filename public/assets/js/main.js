@@ -10,7 +10,7 @@ const btnLeft = document.querySelector(".item-left");
 let canvasSize;
 let elementSize;
 
-let level = 1;
+let level = 3;
 
 let playerPosition = {
   x: undefined,
@@ -42,7 +42,7 @@ function renderMapLevel(level) {
   const actualMapLevel = mapLevel.map((row) => row.trim().split(""));
 
   console.log({ mapLevel, actualMapLevel });
-
+  clearCanvas();
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
       const emoji = emojis[column];
@@ -50,12 +50,15 @@ function renderMapLevel(level) {
       const positionY = elementSize * (indexRow + 1);
 
       if (column == "O") {
-        playerPosition.x = positionX;
-        playerPosition.y = positionY;
+        if (!playerPosition.x && !playerPosition.y) {
+          playerPosition.x = positionX;
+          playerPosition.y = positionY;
+        }
       }
       game.fillText(emoji, positionX, positionY);
     });
   });
+  getPlayerPosition();
   /*  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y); */
   /*   for (let i = 1; i <= 10; i++) {
     for (let j = 1; j <= 10; j++) {
@@ -68,20 +71,26 @@ function renderMapLevel(level) {
   } */
 }
 function moveUp() {
+  console.log("up");
+  console.log(playerPosition);
   playerPosition.y -= elementSize;
-  getPlayerPosition();
+  startGame();
 }
 function moveDown() {
   playerPosition.y += elementSize;
-  getPlayerPosition();
+  startGame();
 }
 function moveLeft() {
+  console.log("left");
+
   playerPosition.x -= elementSize;
-  getPlayerPosition();
+  startGame();
 }
 function moveRight() {
+  console.log("right");
+
   playerPosition.x += elementSize;
-  getPlayerPosition();
+  startGame();
 }
 function moveByKeys(ev) {
   if (ev.key == "ArrowUp") moveUp();
@@ -90,15 +99,16 @@ function moveByKeys(ev) {
   else if (ev.key == "ArrowRight") moveRight();
 }
 
-function startGame() {
-  console.log("starting game");
-  renderMapLevel(level);
-  getPlayerPosition();
-}
-
 function getPlayerPosition() {
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
-  console.log(playerPosition);
+}
+function clearCanvas() {
+  game.clearRect(0, 0, canvasSize, canvasSize);
+}
+function startGame() {
+  console.log("starting game");
+
+  renderMapLevel(level);
 }
 
 // events

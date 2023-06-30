@@ -12,6 +12,11 @@ let elementSize;
 
 let level = 0;
 
+let playerPosition = {
+  x: undefined,
+  y: undefined,
+};
+
 function setCanvasSize() {
   //game screen size
   if (window.innerHeight > window.innerWidth) {
@@ -28,7 +33,7 @@ function setCanvasSize() {
   game.font = elementSize + "px Verdana";
   game.textAlign = "end";
 
-  start();
+  startGame();
 }
 
 function renderMapLevel(level) {
@@ -38,7 +43,21 @@ function renderMapLevel(level) {
 
   console.log({ mapLevel, actualMapLevel });
 
-  for (let i = 1; i <= 10; i++) {
+  actualMapLevel.forEach((row, indexRow) => {
+    row.forEach((column, indexColumn) => {
+      const emoji = emojis[column];
+      const positionX = elementSize * (indexColumn + 1);
+      const positionY = elementSize * (indexRow + 1);
+
+      if (column == "O") {
+        playerPosition.x = positionX;
+        playerPosition.y = positionY;
+      }
+      game.fillText(emoji, positionX, positionY);
+    });
+  });
+  /*  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y); */
+  /*   for (let i = 1; i <= 10; i++) {
     for (let j = 1; j <= 10; j++) {
       game.fillText(
         emojis[actualMapLevel[j - 1][i - 1]],
@@ -46,7 +65,7 @@ function renderMapLevel(level) {
         elementSize * j
       );
     }
-  }
+  } */
 }
 function moveUp() {
   console.log("up");
@@ -66,9 +85,16 @@ function moveByKeys(ev) {
   else if (ev.key == "ArrowLeft") moveLeft();
   else if (ev.key == "ArrowRight") moveRight();
 }
-function start() {
+
+function startGame() {
   console.log("starting game");
   renderMapLevel(level);
+  initialPlayerPosition();
+}
+
+function initialPlayerPosition() {
+  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+  console.log(playerPosition);
 }
 
 // events

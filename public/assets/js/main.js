@@ -1,4 +1,5 @@
 "use strict";
+
 const canvas = document.querySelector(".js-canvas");
 const game = canvas.getContext("2d");
 
@@ -187,7 +188,7 @@ function withinTheMargin() {
   }
 }
 function validateLastLevel(actualLevel) {
-  actualLevel < maps.length - 1 ? levelUp() : gameWin();
+  actualLevel < maps.length - 1 ? levelUp() : winGame();
 }
 
 function clearCanvas() {
@@ -202,7 +203,7 @@ function levelUp() {
   console.log("well done");
   startGame();
 }
-function gameWin() {
+function winGame() {
   console.log("no mas mapas");
   clearCanvas();
   for (let i = 1; i <= 10; i++) {
@@ -211,8 +212,16 @@ function gameWin() {
     }
   }
   // to do: showMessage?? or recharge initial level
+  const jsConfetti = new JSConfetti();
+
+  jsConfetti.addConfetti({
+    emojis: ["🦴", "🐶", "✨", "🏆"],
+    confettiRadius: 6,
+    confettiNumber: 50,
+  });
 }
 // events
+
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
 window.addEventListener("keydown", moveByKeys);
@@ -250,7 +259,7 @@ maps.push(`
     -XXXXXXXXX
     OXXXXXXXXX
   `);
-maps.push(`
+/* maps.push(`
     O--XXXXXXX
     X--XXXXXXX
     XX----XXXX
@@ -285,6 +294,6 @@ maps.push(`
   XX--XXXX-X
   XX-------X
   XXXXXXXXXX
-`);
+`); */
 
 //# sourceMappingURL=main.js.map

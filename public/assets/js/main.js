@@ -24,7 +24,10 @@ const bonePosition = {
   y: undefined,
 };
 
+let collisionPosition = [];
 let isWithinTheMargin = true;
+
+// SET SIZE
 function setCanvasSize() {
   //game screen size
   if (window.innerHeight > window.innerWidth) {
@@ -43,11 +46,14 @@ function setCanvasSize() {
   startGame();
 }
 
+// RENDER
+
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
   // this is a bidimensional array
   actualMapLevel = mapLevel.map((row) => row.trim().split(""));
 
+  collisionPosition = [];
   clearCanvas();
 
   actualMapLevel.forEach((row, indexRow) => {
@@ -65,6 +71,8 @@ function renderMapLevel(level) {
       } else if (column == "I") {
         bonePosition.x = positionX;
         bonePosition.y = positionY;
+      } else if (column == "X") {
+        collisionPosition.push({ positionX, positionY });
       }
       game.fillText(emoji, positionX, positionY);
     });
@@ -82,6 +90,23 @@ function renderMapLevel(level) {
     }
   } */
 }
+function renderPlayerPosition() {
+  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+  validateCollisions();
+  getTheBone();
+}
+function validateCollisions() {
+  const collision = collisionPosition.find((item) => {
+    const collisionX = item.x == playerPosition.x;
+    const collisionY = item.x == playerPosition.y;
+    return collisionX && collisionY;
+  });
+  if (collision) {
+    console.log("CRASH");
+  }
+  console.log({ playerPosition, collision });
+}
+// MOVEMENT CONTROLS
 function moveUp() {
   playerPosition.y -= elementSize;
   if (withinTheMargin()) {
@@ -120,25 +145,11 @@ function moveByKeys(ev) {
   else if (ev.key == "ArrowLeft") moveLeft();
   else if (ev.key == "ArrowRight") moveRight();
 }
-function withinTheMargin() {
-  if (
-    playerPosition.x >= elementSize &&
-    playerPosition.x <= canvasSize &&
-    playerPosition.y >= elementSize &&
-    playerPosition.y <= canvasSize
-  ) {
-    return true;
-  }
-}
-function renderPlayerPosition() {
-  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
-  getTheBone();
-}
 
+//VALIDATIONS
 function getTheBone() {
   if (JSON.stringify(bonePosition) === JSON.stringify(playerPosition)) {
     console.log("congrats!!");
-
     /*  clearCanvas();
     for (let i = 1; i <= 10; i++) {
       for (let j = 1; j <= 10; j++) {
@@ -149,9 +160,17 @@ function getTheBone() {
 
     validateLastLevel(level);
   }
-  console.log({ playerPosition, bonePosition, level });
 }
-
+function withinTheMargin() {
+  if (
+    playerPosition.x >= elementSize &&
+    playerPosition.x <= canvasSize &&
+    playerPosition.y >= elementSize &&
+    playerPosition.y <= canvasSize
+  ) {
+    return true;
+  }
+}
 function validateLastLevel(actualLevel) {
   if (actualLevel < maps.length - 1) {
     level++;

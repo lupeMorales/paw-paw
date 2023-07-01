@@ -7,12 +7,19 @@ const btnDown = document.querySelector(".item-down");
 const btnRight = document.querySelector(".item-right");
 const btnLeft = document.querySelector(".item-left");
 
+let actualMapLevel;
+
 let canvasSize;
 let elementSize;
 
-let level = 3;
+let level = 0;
 
-let playerPosition = {
+const playerPosition = {
+  x: undefined,
+  y: undefined,
+};
+
+const bonePosition = {
   x: undefined,
   y: undefined,
 };
@@ -21,28 +28,26 @@ let isWithinTheMargin = true;
 function setCanvasSize() {
   //game screen size
   if (window.innerHeight > window.innerWidth) {
-    canvasSize = window.innerWidth * 0.75;
+    canvasSize = Math.floor(window.innerWidth * 0.75);
   } else {
-    canvasSize = window.innerHeight * 0.75;
+    canvasSize = Math.floor(window.innerHeight * 0.75);
   }
 
   canvas.setAttribute("width", canvasSize);
   canvas.setAttribute("height", canvasSize);
 
   //elements size
-  elementSize = canvasSize / 10 - 0.4;
+  elementSize = Math.floor(canvasSize / 10 - 0.4);
   game.font = elementSize + "px Verdana";
   game.textAlign = "end";
-  console.log({ canvasSize, elementSize });
   startGame();
 }
 
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
   // this is a bidimensional array
-  const actualMapLevel = mapLevel.map((row) => row.trim().split(""));
+  actualMapLevel = mapLevel.map((row) => row.trim().split(""));
 
-  console.log({ mapLevel, actualMapLevel });
   clearCanvas();
 
   actualMapLevel.forEach((row, indexRow) => {
@@ -51,16 +56,21 @@ function renderMapLevel(level) {
       const positionX = elementSize * (indexColumn + 1);
       const positionY = elementSize * (indexRow + 1);
 
+      //get player position
       if (column == "O") {
         if (!playerPosition.x && !playerPosition.y) {
           playerPosition.x = positionX;
           playerPosition.y = positionY;
         }
+      } else if (column == "I") {
+        bonePosition.x = positionX;
+        bonePosition.y = positionY;
       }
       game.fillText(emoji, positionX, positionY);
     });
   });
-  getPlayerPosition();
+  renderPlayerPosition();
+
   /*  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y); */
   /*   for (let i = 1; i <= 10; i++) {
     for (let j = 1; j <= 10; j++) {
@@ -120,14 +130,51 @@ function withinTheMargin() {
     return true;
   }
 }
-function getPlayerPosition() {
+function renderPlayerPosition() {
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+  getTheBone();
 }
+
+function getTheBone() {
+  if (JSON.stringify(bonePosition) === JSON.stringify(playerPosition)) {
+    console.log("congrats!!");
+
+    /*  clearCanvas();
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 1; j <= 10; j++) {
+        game.fillText(emojis["I"], elementSize * i, elementSize * j);
+      }
+    } */
+    // unos segundos despues que haga esto
+
+    validateLastLevel(level);
+  }
+  console.log({ playerPosition, bonePosition, level });
+}
+
+function validateLastLevel(actualLevel) {
+  if (actualLevel < maps.length - 1) {
+    level++;
+    // to do: showMessage con timeOut
+    console.log("well done");
+
+    startGame();
+  } else {
+    console.log("no mas mapas");
+    clearCanvas();
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 1; j <= 10; j++) {
+        game.fillText(emojis["I"], elementSize * i, elementSize * j);
+      }
+    }
+    // to do: showMessage?? or recharge initial level
+  }
+}
+
 function clearCanvas() {
   game.clearRect(0, 0, canvasSize, canvasSize);
 }
 function startGame() {
-  console.log("starting game");
   renderMapLevel(level);
 }
 

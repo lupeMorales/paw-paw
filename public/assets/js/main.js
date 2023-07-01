@@ -24,7 +24,13 @@ const bonePosition = {
   y: undefined,
 };
 
-let collisionPosition = [];
+const initialPosition = {
+  x: undefined,
+  y: undefined,
+};
+
+let collisionPositions = [];
+
 let isWithinTheMargin = true;
 
 // SET SIZE
@@ -53,7 +59,7 @@ function renderMapLevel(level) {
   // this is a bidimensional array
   actualMapLevel = mapLevel.map((row) => row.trim().split(""));
 
-  collisionPosition = [];
+  collisionPositions = [];
   clearCanvas();
 
   actualMapLevel.forEach((row, indexRow) => {
@@ -67,12 +73,14 @@ function renderMapLevel(level) {
         if (!playerPosition.x && !playerPosition.y) {
           playerPosition.x = positionX;
           playerPosition.y = positionY;
+          initialPosition.x = positionX;
+          initialPosition.y = positionY;
         }
       } else if (column == "I") {
         bonePosition.x = positionX;
         bonePosition.y = positionY;
       } else if (column == "X") {
-        collisionPosition.push({ positionX, positionY });
+        collisionPositions.push({ x: positionX, y: positionY });
       }
       game.fillText(emoji, positionX, positionY);
     });
@@ -95,17 +103,7 @@ function renderPlayerPosition() {
   validateCollisions();
   getTheBone();
 }
-function validateCollisions() {
-  const collision = collisionPosition.find((item) => {
-    const collisionX = item.x == playerPosition.x;
-    const collisionY = item.x == playerPosition.y;
-    return collisionX && collisionY;
-  });
-  if (collision) {
-    console.log("CRASH");
-  }
-  console.log({ playerPosition, collision });
-}
+
 // MOVEMENT CONTROLS
 function moveUp() {
   playerPosition.y -= elementSize;
@@ -147,6 +145,23 @@ function moveByKeys(ev) {
 }
 
 //VALIDATIONS
+
+function validateCollisions() {
+  const collision = collisionPositions.find((enemy) => {
+    const collisionX = enemy.x.toFixed(3) == playerPosition.x.toFixed(3);
+    const collisionY = enemy.y.toFixed(3) == playerPosition.y.toFixed(3);
+    return collisionX && collisionY;
+  });
+
+  if (collision) {
+    console.log("CRASH!");
+    playerPosition.x = initialPosition.x;
+    playerPosition.y = initialPosition.y;
+
+    setTimeout(startGame, 1000);
+  }
+  console.log({ playerPosition, collision });
+}
 function getTheBone() {
   if (JSON.stringify(bonePosition) === JSON.stringify(playerPosition)) {
     console.log("congrats!!");

@@ -187,22 +187,7 @@ function withinTheMargin() {
   }
 }
 function validateLastLevel(actualLevel) {
-  if (actualLevel < maps.length - 1) {
-    level++;
-    // to do: showMessage con timeOut
-    console.log("well done");
-
-    startGame();
-  } else {
-    console.log("no mas mapas");
-    clearCanvas();
-    for (let i = 1; i <= 10; i++) {
-      for (let j = 1; j <= 10; j++) {
-        game.fillText(emojis["I"], elementSize * i, elementSize * j);
-      }
-    }
-    // to do: showMessage?? or recharge initial level
-  }
+  actualLevel < maps.length - 1 ? levelUp() : gameWin();
 }
 
 function clearCanvas() {
@@ -211,7 +196,22 @@ function clearCanvas() {
 function startGame() {
   renderMapLevel(level);
 }
-
+function levelUp() {
+  level++;
+  // to do: showMessage con timeOut
+  console.log("well done");
+  startGame();
+}
+function gameWin() {
+  console.log("no mas mapas");
+  clearCanvas();
+  for (let i = 1; i <= 10; i++) {
+    for (let j = 1; j <= 10; j++) {
+      game.fillText(emojis["I"], elementSize * i, elementSize * j);
+    }
+  }
+  // to do: showMessage?? or recharge initial level
+}
 // events
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);

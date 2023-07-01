@@ -14,6 +14,7 @@ let canvasSize;
 let elementSize;
 
 let level = 0;
+let totalLifes = 3;
 
 const playerPosition = {
   x: undefined,
@@ -155,14 +156,11 @@ function validateCollisions() {
   });
 
   if (collision) {
-    console.log("CRASH!");
-    playerPosition.x = initialPosition.x;
-    playerPosition.y = initialPosition.y;
-
-    setTimeout(startGame, 1000);
+    totalLifes > 1 ? crashOver() : gameOver();
   }
-  console.log({ playerPosition, collision });
+  console.log({ playerPosition, collision, totalLifes });
 }
+
 function getTheBone() {
   if (JSON.stringify(bonePosition) === JSON.stringify(playerPosition)) {
     console.log("congrats!!");
@@ -193,6 +191,21 @@ function validateLastLevel(actualLevel) {
 
 function clearCanvas() {
   game.clearRect(0, 0, canvasSize, canvasSize);
+}
+
+function crashOver() {
+  console.log("CRASH!");
+  loseLife();
+  playerPosition.x = initialPosition.x;
+  playerPosition.y = initialPosition.y;
+
+  setTimeout(startGame, 1000);
+}
+function gameOver() {
+  console.log("GAME OVER");
+}
+function loseLife() {
+  totalLifes--;
 }
 function startGame() {
   renderMapLevel(level);

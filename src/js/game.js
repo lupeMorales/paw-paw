@@ -18,7 +18,7 @@ let canvasSize;
 let elementSize;
 
 let level = 0;
-let totalLifes = ["❤️", "❤️", "❤️"];
+let totalLifes = 3;
 let time = "00000";
 
 const messages = {
@@ -63,8 +63,9 @@ function setCanvasSize() {
 // RENDER
 
 function renderLifes() {
+  const hearts = Array(totalLifes).fill(emojis["HEART"]);
   life.innerHTML = "";
-  totalLifes.forEach((item) => (life.innerHTML += item));
+  hearts.forEach((item) => (life.innerHTML += item));
 }
 
 function renderTime() {
@@ -177,7 +178,7 @@ function validateCollisions() {
 
   if (collision) {
     game.fillText(emojis["BOMB_COLLISION"], playerPosition.x, playerPosition.y);
-    totalLifes.length > 0 ? crashOver() : gameOver();
+    totalLifes > 0 ? crashOver() : gameOver();
   }
   console.log({ playerPosition, collision });
 }
@@ -238,8 +239,8 @@ function reset() {
   totalLifes = ["❤️", "❤️", "❤️"];
 }
 function loseLife() {
-  /*  totalLifes--; */
-  totalLifes.pop();
+  totalLifes--;
+  /*   totalLifes.pop(); */
   console.log(totalLifes);
   renderLifes();
 }

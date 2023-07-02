@@ -8,13 +8,22 @@ const btnDown = document.querySelector(".item-down");
 const btnRight = document.querySelector(".item-right");
 const btnLeft = document.querySelector(".item-left");
 
+const life = document.querySelector(".js-life");
+
 let actualMapLevel;
 
 let canvasSize;
 let elementSize;
 
 let level = 0;
-let totalLifes = 3;
+/* let totalLifes = 3; */
+let totalLifes = ["❤️", "❤️", "❤️"];
+
+const messages = {
+  levelUp: `Well done!`,
+  gameOver: "GAME OVER!",
+  gameWin: "you won!!!",
+};
 
 const playerPosition = {
   x: undefined,
@@ -51,6 +60,11 @@ function setCanvasSize() {
 
 // RENDER
 
+function renderLifes() {
+  life.innerHTML = "";
+  totalLifes.forEach((item) => (life.innerHTML += item));
+}
+
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
   // this is a bidimensional array
@@ -58,6 +72,7 @@ function renderMapLevel(level) {
 
   collisionPositions = [];
   clearCanvas();
+  renderLifes();
 
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
@@ -150,9 +165,9 @@ function validateCollisions() {
 
   if (collision) {
     game.fillText(emojis["BOMB_COLLISION"], playerPosition.x, playerPosition.y);
-    totalLifes > 1 ? crashOver() : gameOver();
+    totalLifes.length > 0 ? crashOver() : gameOver();
   }
-  console.log({ playerPosition, collision, totalLifes });
+  console.log({ playerPosition, collision });
 }
 
 function getTheBone() {
@@ -187,6 +202,13 @@ function clearCanvas() {
   game.clearRect(0, 0, canvasSize, canvasSize);
 }
 
+function renderMessage(message) {
+  game.font = elementSize + "px Cherry Bomb One";
+  game.fontWeight = "bold";
+  game.fillStyle = "#c27434";
+  game.textAlign = "center";
+  game.fillText(message, canvasSize / 2, canvasSize / 2);
+}
 function crashOver() {
   console.log("CRASH!");
 
@@ -196,20 +218,34 @@ function crashOver() {
 
   setTimeout(startGame, 1000);
 }
-function gameOver() {
-  console.log("GAME OVER");
+
+function reset() {
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
+  level = 0;
+  totalLifes = ["❤️", "❤️", "❤️"];
 }
 function loseLife() {
-  totalLifes--;
+  /*  totalLifes--; */
+  totalLifes.pop();
+  console.log(totalLifes);
+  renderLifes();
 }
 function startGame() {
   renderMapLevel(level);
 }
+function gameOver() {
+  console.log("GAME OVER");
+  clearCanvas();
+  renderMessage(messages.gameOver);
+  /* setTimeout(startGame, 1000); */
+}
 function levelUp() {
   level++;
-  // to do: showMessage con timeOut
-  console.log("well done");
-  startGame();
+  console.log({ level });
+  clearCanvas();
+  renderMessage(messages.levelUp);
+  setTimeout(setCanvasSize, 1000);
 }
 function winGame() {
   console.log("no mas mapas");
@@ -219,6 +255,7 @@ function winGame() {
       game.fillText(emojis["I"], elementSize * i, elementSize * j);
     }
   }
+  renderMessage(messages.gameWin);
   // to do: showMessage?? or recharge initial level
   const jsConfetti = new JSConfetti();
 
@@ -279,7 +316,7 @@ maps.push(`
     XXXX---IXX
     XXXXXXXXXX
     `);
-/* maps.push(`
+maps.push(`
     I-----XXXX
     XXXXX-XXXX
     XX----XXXX
@@ -302,7 +339,6 @@ maps.push(`
   XX--XXXX-X
   XX-------X
   XXXXXXXXXX
-`); 
- */
+`);
 
 //# sourceMappingURL=main.js.map

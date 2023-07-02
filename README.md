@@ -1,6 +1,6 @@
 ![paw paw](./src/images/logo.png)
 
-# Paw Paw <span> | </span>  <a href="https://lupemorales.github.io/anime/" target="_blank">   Demo </a><span> | </span>
+# Paw Paw <span> | </span>  <a href="lupemorales.github.io/paw-paw/" target="_blank">   Demo </a><span> | </span>
     
 Ayuda al cachorrito a encontrar su hueso favorito.
 

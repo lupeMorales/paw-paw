@@ -196,8 +196,8 @@ function clearCanvas() {
 function crashOver() {
   console.log("CRASH!");
   loseLife();
-  playerPosition.x = initialPosition.x;
-  playerPosition.y = initialPosition.y;
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
 
   setTimeout(startGame, 1000);
 }

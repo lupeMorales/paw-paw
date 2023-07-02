@@ -26,11 +26,6 @@ const bonePosition = {
   y: undefined,
 };
 
-const initialPosition = {
-  x: undefined,
-  y: undefined,
-};
-
 let collisionPositions = [];
 
 let isWithinTheMargin = true;
@@ -75,8 +70,6 @@ function renderMapLevel(level) {
         if (!playerPosition.x && !playerPosition.y) {
           playerPosition.x = positionX;
           playerPosition.y = positionY;
-          initialPosition.x = positionX;
-          initialPosition.y = positionY;
         }
       } else if (column == "I") {
         bonePosition.x = positionX;
@@ -156,6 +149,7 @@ function validateCollisions() {
   });
 
   if (collision) {
+    game.fillText(emojis["BOMB_COLLISION"], playerPosition.x, playerPosition.y);
     totalLifes > 1 ? crashOver() : gameOver();
   }
   console.log({ playerPosition, collision, totalLifes });
@@ -195,6 +189,7 @@ function clearCanvas() {
 
 function crashOver() {
   console.log("CRASH!");
+
   loseLife();
   playerPosition.x = undefined;
   playerPosition.y = undefined;

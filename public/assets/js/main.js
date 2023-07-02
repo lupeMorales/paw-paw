@@ -9,6 +9,8 @@ const btnRight = document.querySelector(".item-right");
 const btnLeft = document.querySelector(".item-left");
 
 const life = document.querySelector(".js-life");
+const timer = document.querySelector(".js-timer");
+const record = document.querySelector(".js-record");
 
 let actualMapLevel;
 
@@ -16,8 +18,8 @@ let canvasSize;
 let elementSize;
 
 let level = 0;
-/* let totalLifes = 3; */
 let totalLifes = ["❤️", "❤️", "❤️"];
+let time = "00000";
 
 const messages = {
   levelUp: `Well done!`,
@@ -65,6 +67,15 @@ function renderLifes() {
   totalLifes.forEach((item) => (life.innerHTML += item));
 }
 
+function renderTime() {
+  const sum = () => time + 1;
+
+  timer.innerHTML = time;
+}
+
+function renderRecor() {
+  record.innerHTML = "";
+}
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
   // this is a bidimensional array
@@ -73,6 +84,7 @@ function renderMapLevel(level) {
   collisionPositions = [];
   clearCanvas();
   renderLifes();
+  setInterval(renderTime, 1);
 
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
@@ -236,6 +248,7 @@ function startGame() {
 }
 function gameOver() {
   console.log("GAME OVER");
+
   clearCanvas();
   renderMessage(messages.gameOver);
   /* setTimeout(startGame, 1000); */
@@ -316,7 +329,7 @@ maps.push(`
     XXXX---IXX
     XXXXXXXXXX
     `);
-maps.push(`
+/* maps.push(`
     I-----XXXX
     XXXXX-XXXX
     XX----XXXX
@@ -339,6 +352,6 @@ maps.push(`
   XX--XXXX-X
   XX-------X
   XXXXXXXXXX
-`);
+`); */
 
 //# sourceMappingURL=main.js.map

@@ -19,7 +19,10 @@ let elementSize;
 
 let level = 0;
 let totalLifes = 3;
-let time = "00000";
+
+let timeStart;
+let timePlayer;
+let timeInterval;
 
 const messages = {
   levelUp: `Well done!`,
@@ -63,15 +66,14 @@ function setCanvasSize() {
 // RENDER
 
 function renderLifes() {
+  //built am array with n items ( the numbers of item is totalLife)
   const hearts = Array(totalLifes).fill(emojis["HEART"]);
   life.innerHTML = "";
   hearts.forEach((item) => (life.innerHTML += item));
 }
 
-function renderTime() {
-  const sum = () => time + 1;
-
-  timer.innerHTML = time;
+function showTime() {
+  timer.innerHTML = Date.now() - timeStart;
 }
 
 function renderRecor() {
@@ -85,7 +87,10 @@ function renderMapLevel(level) {
   collisionPositions = [];
   clearCanvas();
   renderLifes();
-  setInterval(renderTime, 1);
+  if (!timeStart) {
+    timeStart = Date.now();
+    timeInterval = setInterval(showTime, 100);
+  }
 
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
@@ -252,6 +257,7 @@ function gameOver() {
 
   clearCanvas();
   renderMessage(messages.gameOver);
+  clearInterval(timeInterval);
   /* setTimeout(startGame, 1000); */
 }
 function levelUp() {
@@ -263,6 +269,7 @@ function levelUp() {
 }
 function winGame() {
   console.log("no mas mapas");
+  clearInterval(timeInterval);
   clearCanvas();
   for (let i = 1; i <= 10; i++) {
     for (let j = 1; j <= 10; j++) {

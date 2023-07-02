@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paw Paw</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Cherry+Bomb+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="icon" href="./assets/images/favicon.png" />
+  </head>
+  <body>
+    <div class="page__game">
+      <main>
+        <h2 class="title__game">Paw Paw</h2>
+        <div class="game">
+          <section>
+            <canvas class="js-canvas"></canvas>
+            <div class="grid-btns">
+              <div class="btns">
+                <div class="btn-item item-up">
+                  <button class="btn-arrow">&#8593;</button>
+                </div>
+                <div class="btn-item item-left">
+                  <button class="btn-arrow">&#8592;</button>
+                </div>
+                <div class="btn-item item-down">
+                  <button class="btn-arrow">&#8595;</button>
+                </div>
+                <div class="btn-item item-right">
+                  <button class="btn-arrow">&#8594;</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="game__info">
+            <h2 class="title__game-desktop title__game">Paw Paw</h2>
+            <!--   <img
+              src="./assets/images/PAW-PAW.png"
+              alt="puppies peeking"
+              class="img-game"
+            /> -->
+            <ul class="info">
+              <li class="subtitle">Life: ❤️❤️❤️</li>
+              <li class="subtitle">Time ⏰: 255555</li>
+              <li class="subtitle">Record 🏁:22225</li>
+            </ul>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__text">
+          &copy <span class="logo">paw paw</span> coded by
+          <a class="link-footer" href="https://github.com/lupeMorales" target="_blank"
+            >lupeMorales</a
+          >
+        </p>
+      </footer>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <script src="./assets/js/maps.js"></script>
+    <script src="./assets/js/game.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

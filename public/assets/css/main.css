@@ -7,14 +7,93 @@ html {
   font-size: 62.5%;
   font-family: "Andika", sans-serif; }
 
-.link {
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fbe8d7;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  /* border: 2px solid $color-brown; */
+  border-radius: 20px;
+  width: 80%; }
+  .modal-content__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 0;
+    font-family: "Cherry Bomb One", cursive;
+    color: #c27434; }
+    .modal-content__text p {
+      font-size: 2.5em; }
+    .modal-content__text h3,
+    .modal-content__text .doggy {
+      font-size: 3em;
+      text-transform: uppercase; }
+
+.button-option {
+  position: relative;
+  left: calc(50% - 65px);
+  padding: 5px 10px;
+  width: 60px;
+  background-color: #f2b150;
+  border: 2px solid #c27434;
+  border-radius: 50px;
+  text-transform: uppercase;
+  color: #c27434;
+  font-family: "Cherry Bomb One", cursive; }
+  .button-option:hover,
+  .button-option :focus {
+    cursor: pointer;
+    background-color: #c27434;
+    color: #fbe8d7; }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 10px; }
+  .close :hover,
+  .close :focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
+
+.link-to-game {
   text-decoration: none;
   cursor: pointer;
   color: #fbe8d7; }
-  .link:hover {
+  .link-to-game:hover {
     text-transform: uppercase;
     font-weight: bold;
     color: #c27434; }
+
+.link-to-index {
+  text-decoration: none;
+  color: #c27434;
+  cursor: pointer; }
+  .link-to-index:hover {
+    color: #fbe8d7; }
 
 .link-footer {
   text-decoration: none;
@@ -22,6 +101,9 @@ html {
   color: #000; }
   .link-footer :hover {
     color: #c27434; }
+
+.active {
+  display: block; }
 
 .main-index {
   display: flex;
@@ -125,8 +207,7 @@ html {
       background-color: #c27434;
       color: #fbe8d7; }
     .game .grid-btns .btn-arrow:focus {
-      border-color: #c27434;
-      border-style: none; }
+      border-color: #c27434; }
     .game .grid-btns .btn-arrow:active {
       background-color: rgba(250, 250, 255, 0.85);
       box-shadow: 0.5px 1px 2px rgba(0, 0, 0, 0.3); }

@@ -1,4 +1,4 @@
-.link {
+.link-to-game {
   text-decoration: none;
   cursor: pointer;
   color: $color-light-yellow;
@@ -8,7 +8,14 @@
     color: $color-brown;
   }
 }
-
+.link-to-index {
+  text-decoration: none;
+  color: $color-brown;
+  cursor: pointer;
+  &:hover {
+    color: $color-light-yellow;
+  }
+}
 .link-footer {
   text-decoration: none;
   cursor: pointer;

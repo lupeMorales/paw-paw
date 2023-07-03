@@ -12,6 +12,10 @@ const life = document.querySelector(".js-life");
 const timer = document.querySelector(".js-timer");
 const record = document.querySelector(".js-record");
 
+const btnCloseModal = document.querySelector(".js-btn-close");
+const modal = document.querySelector(".js-modal");
+const btnNo = document.querySelector(".js-btn-no");
+
 let actualMapLevel;
 
 let canvasSize;
@@ -76,8 +80,8 @@ function showTime() {
   timer.innerHTML = Date.now() - timeStart;
 }
 
-function renderRecor() {
-  record.innerHTML = "";
+function showRecord() {
+  record.innerHTML = "TO DO";
 }
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
@@ -91,7 +95,7 @@ function renderMapLevel(level) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);
   }
-
+  showRecord();
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
       const emoji = emojis[column];
@@ -131,7 +135,26 @@ function renderPlayerPosition() {
   validateCollisions();
   getTheBone();
 }
-
+function clearCanvas() {
+  game.clearRect(0, 0, canvasSize, canvasSize);
+}
+function renderMessage(message) {
+  game.font = elementSize + "px Cherry Bomb One";
+  game.fontWeight = "bold";
+  game.fillStyle = "#c27434";
+  game.textAlign = "center";
+  game.fillText(message, canvasSize / 2, canvasSize / 2);
+}
+function showModal() {
+  modal.classList.add("active");
+}
+/* function closeModal() {
+  modal.classList.remove("active");
+} */
+function exit() {
+  console.log("NO MI SIELA");
+  modal.classList.remove("active");
+}
 // MOVEMENT CONTROLS
 function moveUp() {
   playerPosition.y -= elementSize;
@@ -216,17 +239,6 @@ function validateLastLevel(actualLevel) {
   actualLevel < maps.length - 1 ? levelUp() : winGame();
 }
 
-function clearCanvas() {
-  game.clearRect(0, 0, canvasSize, canvasSize);
-}
-
-function renderMessage(message) {
-  game.font = elementSize + "px Cherry Bomb One";
-  game.fontWeight = "bold";
-  game.fillStyle = "#c27434";
-  game.textAlign = "center";
-  game.fillText(message, canvasSize / 2, canvasSize / 2);
-}
 function crashOver() {
   console.log("CRASH!");
 
@@ -258,7 +270,8 @@ function gameOver() {
   clearCanvas();
   renderMessage(messages.gameOver);
   clearInterval(timeInterval);
-  /* setTimeout(startGame, 1000); */
+  // to do
+  setTimeout(showModal, 1000);
 }
 function levelUp() {
   level++;
@@ -270,6 +283,7 @@ function levelUp() {
 function winGame() {
   console.log("no mas mapas");
   clearInterval(timeInterval);
+
   clearCanvas();
   for (let i = 1; i <= 10; i++) {
     for (let j = 1; j <= 10; j++) {
@@ -296,3 +310,17 @@ btnUp.addEventListener("click", moveUp);
 btnDown.addEventListener("click", moveDown);
 btnRight.addEventListener("click", moveRight);
 btnLeft.addEventListener("click", moveLeft);
+
+function sayHi() {
+  console.log("hi");
+}
+
+btnNo.addEventListener("click", exit);
+/* btnCloseModal.addEventListener("click", closeModal); */
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

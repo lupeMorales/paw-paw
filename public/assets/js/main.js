@@ -28,7 +28,7 @@ let timeStart;
 let timeInterval;
 
 const messages = {
-  levelUp: `Well done! 🎉`,
+  levelUp: `Well done!`,
   gameOver: "GAME OVER!",
   newRecord: "NEW RECORD 🏆",
   gameWin: "record not broken",
@@ -280,41 +280,29 @@ function winGame() {
   const playerTime = Date.now() - timeStart;
   console.log("no mas mapas");
   clearInterval(timeInterval);
-
-  if (!recordTime) {
-    localStorage.setItem("record_time", playerTime);
-
+  const cheer = (message) => {
     clearCanvas();
-
     for (let i = 1; i <= 10; i++) {
       for (let j = 1; j <= 10; j++) {
         game.fillText(emojis["I"], elementSize * i, elementSize * j);
       }
     }
-    renderMessage(messages.newRecord);
+    renderMessage(message);
+  };
+
+  if (!recordTime) {
+    localStorage.setItem("record_time", playerTime);
+
+    cheer(messages.newRecord);
   } else {
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
 
+      cheer(messages.newRecord);
       console.log(" superado ");
-      clearCanvas();
-
-      for (let i = 1; i <= 10; i++) {
-        for (let j = 1; j <= 10; j++) {
-          game.fillText(emojis["I"], elementSize * i, elementSize * j);
-        }
-      }
-      renderMessage(messages.newRecord);
     } else {
       console.log("record no superado");
-
-      clearCanvas();
-      for (let i = 1; i <= 10; i++) {
-        for (let j = 1; j <= 10; j++) {
-          game.fillText(emojis["I"], elementSize * i, elementSize * j);
-        }
-      }
-      renderMessage(messages.gameWin);
+      cheer(messages.gameWin);
     }
   }
   console.log({ recordTime, playerTime });

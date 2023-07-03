@@ -25,13 +25,13 @@ let level = 0;
 let totalLifes = 3;
 
 let timeStart;
-let timePlayer;
 let timeInterval;
 
 const messages = {
-  levelUp: `Well done!`,
+  levelUp: `Well done! 🎉`,
   gameOver: "GAME OVER!",
-  gameWin: "you won!!!",
+  newRecord: "NEW RECORD 🏆",
+  gameWin: "record not broken",
 };
 
 const playerPosition = {
@@ -154,6 +154,10 @@ function showModal() {
 function exit() {
   console.log("NO MI SIELA");
   modal.classList.remove("active");
+  btnDown.disabled = true;
+  btnUp.disabled = true;
+  btnLeft.disabled = true;
+  btnRight.disabled = true;
 }
 // MOVEMENT CONTROLS
 function moveUp() {
@@ -213,15 +217,6 @@ function validateCollisions() {
 
 function getTheBone() {
   if (JSON.stringify(bonePosition) === JSON.stringify(playerPosition)) {
-    console.log("congrats!!");
-    /*  clearCanvas();
-    for (let i = 1; i <= 10; i++) {
-      for (let j = 1; j <= 10; j++) {
-        game.fillText(emojis["I"], elementSize * i, elementSize * j);
-      }
-    } */
-    // unos segundos despues que haga esto
-
     validateLastLevel(level);
   }
 }
@@ -281,19 +276,50 @@ function levelUp() {
   setTimeout(setCanvasSize, 1000);
 }
 function winGame() {
+  const recordTime = localStorage.getItem("record_time");
+  const playerTime = Date.now() - timeStart;
   console.log("no mas mapas");
   clearInterval(timeInterval);
 
-  clearCanvas();
-  for (let i = 1; i <= 10; i++) {
-    for (let j = 1; j <= 10; j++) {
-      game.fillText(emojis["I"], elementSize * i, elementSize * j);
+  if (!recordTime) {
+    localStorage.setItem("record_time", playerTime);
+
+    clearCanvas();
+
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 1; j <= 10; j++) {
+        game.fillText(emojis["I"], elementSize * i, elementSize * j);
+      }
+    }
+    renderMessage(messages.newRecord);
+  } else {
+    if (recordTime >= playerTime) {
+      localStorage.setItem("record_time", playerTime);
+
+      console.log(" superado ");
+      clearCanvas();
+
+      for (let i = 1; i <= 10; i++) {
+        for (let j = 1; j <= 10; j++) {
+          game.fillText(emojis["I"], elementSize * i, elementSize * j);
+        }
+      }
+      renderMessage(messages.newRecord);
+    } else {
+      console.log("record no superado");
+
+      clearCanvas();
+      for (let i = 1; i <= 10; i++) {
+        for (let j = 1; j <= 10; j++) {
+          game.fillText(emojis["I"], elementSize * i, elementSize * j);
+        }
+      }
+      renderMessage(messages.gameWin);
     }
   }
-  renderMessage(messages.gameWin);
-  // to do: showMessage?? or recharge initial level
+  console.log({ recordTime, playerTime });
+  // show confetti
   const jsConfetti = new JSConfetti();
-
   jsConfetti.addConfetti({
     emojis: ["🦴", "🐶", "✨", "🏆"],
     confettiRadius: 6,
@@ -310,10 +336,6 @@ btnUp.addEventListener("click", moveUp);
 btnDown.addEventListener("click", moveDown);
 btnRight.addEventListener("click", moveRight);
 btnLeft.addEventListener("click", moveLeft);
-
-function sayHi() {
-  console.log("hi");
-}
 
 btnNo.addEventListener("click", exit);
 /* btnCloseModal.addEventListener("click", closeModal); */

@@ -55,7 +55,7 @@ html {
   padding: 5px 10px;
   width: 60px;
   background-color: #f2b150;
-  border: 2px solid #c27434;
+  border-style: none;
   border-radius: 50px;
   text-transform: uppercase;
   color: #c27434;

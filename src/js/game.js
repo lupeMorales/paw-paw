@@ -26,12 +26,13 @@ let totalLifes = 3;
 
 let timeStart;
 let timeInterval;
+const recordTime = localStorage.getItem("record_time");
 
 const messages = {
-  levelUp: `Well done!`,
+  levelUp: "Well done!",
   gameOver: "GAME OVER!",
   newRecord: "NEW RECORD 🏆",
-  gameWin: "record not broken",
+  gameWin: "Record not broken",
 };
 
 const playerPosition = {
@@ -81,7 +82,7 @@ function showTime() {
 }
 
 function showRecord() {
-  record.innerHTML = "TO DO";
+  record.innerHTML = recordTime;
 }
 function renderMapLevel(level) {
   const mapLevel = maps[level].trim().split("\n");
@@ -159,6 +160,7 @@ function exit() {
   btnLeft.disabled = true;
   btnRight.disabled = true;
 }
+
 // MOVEMENT CONTROLS
 function moveUp() {
   playerPosition.y -= elementSize;
@@ -276,7 +278,6 @@ function levelUp() {
   setTimeout(setCanvasSize, 1000);
 }
 function winGame() {
-  const recordTime = localStorage.getItem("record_time");
   const playerTime = Date.now() - timeStart;
   console.log("no mas mapas");
   clearInterval(timeInterval);
@@ -288,6 +289,12 @@ function winGame() {
       }
     }
     renderMessage(message);
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      emojis: ["🦴", "🐶", "✨", "🏆"],
+      confettiRadius: 6,
+      confettiNumber: 50,
+    });
   };
 
   if (!recordTime) {
@@ -307,12 +314,6 @@ function winGame() {
   }
   console.log({ recordTime, playerTime });
   // show confetti
-  const jsConfetti = new JSConfetti();
-  jsConfetti.addConfetti({
-    emojis: ["🦴", "🐶", "✨", "🏆"],
-    confettiRadius: 6,
-    confettiNumber: 50,
-  });
 }
 // events
 

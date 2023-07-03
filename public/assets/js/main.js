@@ -11,6 +11,7 @@ const btnLeft = document.querySelector(".item-left");
 const life = document.querySelector(".js-life");
 const timer = document.querySelector(".js-timer");
 const record = document.querySelector(".js-record");
+const result = document.querySelector(".js-result");
 
 const btnCloseModal = document.querySelector(".js-btn-close");
 const modal = document.querySelector(".js-modal");
@@ -34,8 +35,7 @@ const recordTime = localStorage.getItem("record_time");
 const messages = {
   levelUp: "Well done!",
   gameOver: "GAME OVER!",
-  newRecord: "NEW RECORD 🏆",
-  gameWin: "Record not broken",
+  gameWin: "You Win!!! 🏆",
 };
 
 const playerPosition = {
@@ -95,11 +95,13 @@ function renderMapLevel(level) {
   collisionPositions = [];
   clearCanvas();
   renderLifes();
+  result.innerHTML = `Level ${level}/${maps.length}`;
   if (!timeStart) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);
+    showRecord();
   }
-  showRecord();
+
   actualMapLevel.forEach((row, indexRow) => {
     row.forEach((column, indexColumn) => {
       const emoji = emojis[column];
@@ -149,14 +151,8 @@ function renderMessage(message) {
   game.textAlign = "center";
   game.fillText(message, canvasSize / 2, canvasSize / 2);
 }
-/* function showModal(modal) {
-  modal.classList.add("active");
-} */
-/* function closeModal() {
-  modal.classList.remove("active");
-} */
+
 function exit() {
-  console.log("NO MI SIELA");
   modal.classList.remove("active");
   modalWinner.classList.remove("active");
   modalBlock.classList.add("active");
@@ -215,7 +211,6 @@ function validateCollisions() {
     game.fillText(emojis["BOMB_COLLISION"], playerPosition.x, playerPosition.y);
     totalLifes > 0 ? crashOver() : gameOver();
   }
-  console.log({ playerPosition, collision });
 }
 
 function getTheBone() {
@@ -238,8 +233,6 @@ function validateLastLevel(actualLevel) {
 }
 
 function crashOver() {
-  console.log("CRASH!");
-
   loseLife();
   playerPosition.x = undefined;
   playerPosition.y = undefined;
@@ -255,16 +248,12 @@ function reset() {
 }
 function loseLife() {
   totalLifes--;
-  /*   totalLifes.pop(); */
-  console.log(totalLifes);
   renderLifes();
 }
 function startGame() {
   renderMapLevel(level);
 }
 function gameOver() {
-  console.log("GAME OVER");
-
   clearCanvas();
   renderMessage(messages.gameOver);
   clearInterval(timeInterval);
@@ -273,23 +262,23 @@ function gameOver() {
 }
 function levelUp() {
   level++;
-  console.log({ level });
   clearCanvas();
+  result.innerHTML = `Level ${level}/${maps.length}`;
   renderMessage(messages.levelUp);
   setTimeout(setCanvasSize, 1000);
 }
 function winGame() {
   const playerTime = Date.now() - timeStart;
-  console.log("no mas mapas");
+
   clearInterval(timeInterval);
-  const cheer = (message) => {
+  const cheer = () => {
     clearCanvas();
     for (let i = 1; i <= 10; i++) {
       for (let j = 1; j <= 10; j++) {
         game.fillText(emojis["I"], elementSize * i, elementSize * j);
       }
     }
-    renderMessage(message);
+    renderMessage(messages.gameWin);
     function confetti() {
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti({
@@ -305,21 +294,18 @@ function winGame() {
 
   if (!recordTime) {
     localStorage.setItem("record_time", playerTime);
-
-    cheer(messages.newRecord);
+    result.innerHTML = "Congratulations! You have broken a NEW RECORD";
+    cheer();
   } else {
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
-
-      cheer(messages.newRecord);
-      console.log(" superado ");
+      result.innerHTML = "Congratulations! You have broken a NEW RECORD";
+      cheer();
     } else {
-      console.log("record no superado");
-      cheer(messages.gameWin);
+      result.innerHTML = "Sorry! NOT new record";
+      cheer();
     }
   }
-  console.log({ recordTime, playerTime });
-  // show confetti
 }
 // events
 
@@ -334,7 +320,6 @@ btnLeft.addEventListener("click", moveLeft);
 
 btnNo.addEventListener("click", exit);
 btnNoPlay.addEventListener("click", exit);
-/* btnCloseModal.addEventListener("click", closeModal); */
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {

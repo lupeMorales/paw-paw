@@ -14,7 +14,10 @@ const record = document.querySelector(".js-record");
 
 const btnCloseModal = document.querySelector(".js-btn-close");
 const modal = document.querySelector(".js-modal");
+const modalWinner = document.querySelector(".js-modal-winner");
+const modalBlock = document.querySelector(".js-modal-block");
 const btnNo = document.querySelector(".js-btn-no");
+const btnNoPlay = document.querySelector(".js-no");
 
 let actualMapLevel;
 
@@ -146,19 +149,17 @@ function renderMessage(message) {
   game.textAlign = "center";
   game.fillText(message, canvasSize / 2, canvasSize / 2);
 }
-function showModal() {
+/* function showModal(modal) {
   modal.classList.add("active");
-}
+} */
 /* function closeModal() {
   modal.classList.remove("active");
 } */
 function exit() {
   console.log("NO MI SIELA");
   modal.classList.remove("active");
-  btnDown.disabled = true;
-  btnUp.disabled = true;
-  btnLeft.disabled = true;
-  btnRight.disabled = true;
+  modalWinner.classList.remove("active");
+  modalBlock.classList.add("active");
 }
 
 // MOVEMENT CONTROLS
@@ -267,8 +268,8 @@ function gameOver() {
   clearCanvas();
   renderMessage(messages.gameOver);
   clearInterval(timeInterval);
-  // to do
-  setTimeout(showModal, 1000);
+
+  setTimeout(modal.classList.add("active"), 1000);
 }
 function levelUp() {
   level++;
@@ -289,12 +290,17 @@ function winGame() {
       }
     }
     renderMessage(message);
-    const jsConfetti = new JSConfetti();
-    jsConfetti.addConfetti({
-      emojis: ["🦴", "🐶", "✨", "🏆"],
-      confettiRadius: 6,
-      confettiNumber: 50,
-    });
+    function confetti() {
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti({
+        emojis: ["🦴", "🐶", "✨", "🏆"],
+        confettiRadius: 6,
+        confettiNumber: 50,
+      });
+    }
+    setInterval(confetti, 1000);
+    const showModal = modalWinner.classList.add("active");
+    setTimeout(showModal, 5000);
   };
 
   if (!recordTime) {
@@ -327,12 +333,16 @@ btnRight.addEventListener("click", moveRight);
 btnLeft.addEventListener("click", moveLeft);
 
 btnNo.addEventListener("click", exit);
+btnNoPlay.addEventListener("click", exit);
 /* btnCloseModal.addEventListener("click", closeModal); */
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    modalBlock.style.display = "block";
+  } else if (event.target == modalWinner) {
+    modalWinner.style.display = "none";
   }
 };
 

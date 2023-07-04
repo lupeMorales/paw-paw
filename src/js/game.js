@@ -68,6 +68,11 @@ function setCanvasSize() {
   elementSize = Math.floor(canvasSize / 10 - 0.4);
   game.font = elementSize + "px Verdana";
   game.textAlign = "end";
+  // each time load screen or resize screen playerPositio(0,0):
+  // starGame() give the actual position
+  // So, playerPosition is resized at the same time that canvas and element are resized
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
   startGame();
 }
 
@@ -94,6 +99,7 @@ function renderMapLevel(level) {
 
   collisionPositions = [];
   clearCanvas();
+
   renderLifes();
   result.innerHTML = `Level ${level}/${maps.length}`;
   if (!timeStart) {

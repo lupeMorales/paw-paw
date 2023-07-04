@@ -24,7 +24,7 @@ if (btnYes instanceof NodeList) {
   console.log("ok");
 }
 let actualMapLevel;
-
+console.log("Aló mija");
 let canvasSize;
 let elementSize;
 

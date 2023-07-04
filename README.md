@@ -6,14 +6,18 @@ Ayuda al cachorrito a encontrar su hueso favorito.
 
 Paw Paw es un juego en 2d que consiste en guiar a un cachorrito a través del teclado o mediante los botones de la interfaz hasta su hueso. ¡Cuidado! no te choques con los arbustos o perderás vida.
 
-### Web responsive mobile:
+## Especificaciones:
+1. Si el cachorrito choca vuelve a la posición inicial en el nivel actual.
+2. Si el cachorrito se choca 3 veces pirde todas las vidas y termina el juego.
+3. Si el cachorrito alcanza el hueso se sube de nivel
+4. Cuando terminan todos los niveles mostrar mensaje y ofrecer la occión de volver a jugar.
+5. Mostrar por pantalla el mejor tiempo.
+6. Morstrar en pantalla si se bate record.
 
-![Mobile]()
 
+### View:
 
-### Web responsive desktop:
-
-![Desktop]()
+![Desktop](./src/images/paw-paw-views.png)
 
 ## Instalación:
 

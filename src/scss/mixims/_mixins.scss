@@ -1,0 +1,6 @@
+@mixin background-pattern() {
+  background-color: $color-yellow;
+  background-image: linear-gradient($color-orange 2.6px, transparent 2.6px),
+    linear-gradient(to right, $color-orange 2.6px, $color-yellow 2.6px);
+  background-size: 52px 52px;
+}

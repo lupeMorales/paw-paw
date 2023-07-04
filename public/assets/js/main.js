@@ -17,9 +17,12 @@ const btnCloseModal = document.querySelector(".js-btn-close");
 const modal = document.querySelector(".js-modal");
 const modalWinner = document.querySelector(".js-modal-winner");
 const modalBlock = document.querySelector(".js-modal-block");
-const btnNo = document.querySelector(".js-btn-no");
-const btnNoPlay = document.querySelector(".js-no");
+const btnYes = document.querySelectorAll(".js-yes");
+const btnNo = document.querySelectorAll(".js-no");
 
+if (btnYes instanceof NodeList) {
+  console.log("ok");
+}
 let actualMapLevel;
 
 let canvasSize;
@@ -39,6 +42,11 @@ const messages = {
 };
 
 const playerPosition = {
+  x: undefined,
+  y: undefined,
+};
+
+const lastPlayerPosition = {
   x: undefined,
   y: undefined,
 };
@@ -69,8 +77,8 @@ function setCanvasSize() {
   game.font = elementSize + "px Verdana";
   game.textAlign = "end";
   // each time load screen or resize screen playerPositio(0,0):
-  // starGame() give the actual position
-  // So, playerPosition is resized at the same time that canvas and element are resized
+  // So, playerPosition updatesupdates at the same time that canvas and element are resized
+  // OJO CUIDAO!! when resized player back to the home
   playerPosition.x = undefined;
   playerPosition.y = undefined;
   startGame();
@@ -313,6 +321,10 @@ function winGame() {
     }
   }
 }
+
+function reload() {
+  console.log("NO MISIELA");
+}
 // events
 
 window.addEventListener("load", setCanvasSize);
@@ -324,8 +336,8 @@ btnDown.addEventListener("click", moveDown);
 btnRight.addEventListener("click", moveRight);
 btnLeft.addEventListener("click", moveLeft);
 
-btnNo.addEventListener("click", exit);
-btnNoPlay.addEventListener("click", exit);
+btnYes.forEach((item) => item.addEventListener("click", reload));
+btnNo.forEach((item) => item.addEventListener("click", exit));
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {

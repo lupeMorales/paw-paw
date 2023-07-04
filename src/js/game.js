@@ -28,7 +28,7 @@ let actualMapLevel;
 let canvasSize;
 let elementSize;
 
-let level = 7;
+let level = 0;
 let totalLifes = 3;
 
 let timeStart;

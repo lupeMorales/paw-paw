@@ -106,9 +106,6 @@ html {
 .active {
   display: block; }
 
-.page {
-  height: 100vh; }
-
 .main-index {
   display: flex;
   justify-content: center;
@@ -142,6 +139,9 @@ html {
       background-color: #f2b150;
       color: #c27434; }
 
+main {
+  height: auto; }
+
 .title__game {
   font-family: "Cherry Bomb One", cursive;
   text-align: center;
@@ -172,7 +172,7 @@ html {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 3rem;
+  padding: 1rem 3rem;
   width: 100%;
   height: auto; }
   @media all and (min-width: 768px) {
@@ -243,7 +243,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 8px;
   gap: 20px; }
   .game__info .info {
     width: 280px;

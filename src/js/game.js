@@ -28,7 +28,7 @@ let actualMapLevel;
 let canvasSize;
 let elementSize;
 
-let level = 0;
+let level = 7;
 let totalLifes = 3;
 
 let timeStart;
@@ -109,7 +109,7 @@ function renderMapLevel(level) {
   clearCanvas();
 
   renderLifes();
-  result.innerHTML = `Level ${level}/${maps.length}`;
+  result.innerHTML = `Level ${level + 1}/${maps.length}`;
   if (!timeStart) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);

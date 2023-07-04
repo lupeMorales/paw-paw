@@ -35,7 +35,7 @@ maps.push(`
     XXXX---IXX
     XXXXXXXXXX
     `);
-/* maps.push(`
+maps.push(`
     I-----XXXX
     XXXXX-XXXX
     XX----XXXX
@@ -58,4 +58,52 @@ maps.push(`
   XX--XXXX-X
   XX-------X
   XXXXXXXXXX
-`); */
+`);
+maps.push(`
+  X--------X
+  XXX-XX-X-X
+  XXX-XX-XOX
+  XXX-XX-X-X
+  XXX--X-X-X
+  I---X--X-X
+  XX--X-XX-X
+  XX--X-XX-X
+  XX-------X
+  XXXXXXXXXX
+`);
+maps.push(`
+  X---XXXXXX
+  X-X-XXXX-X
+  --X-XXXXXX
+  -XX-XX-X-X
+  -XX----X-X
+  O--XX--X-X
+  XX-XX-XX-X
+  XX-XX-XX-X
+  XX-XX----X
+  XXXXXXXXIX
+`);
+maps.push(`
+  XXXXXXXXXX
+  XXX------X
+  XXX-XXXX-X
+  ----XXXX-X
+  -XXX--XX-X
+  -XXX--XX-X
+  -X-XX-XX-X
+  -X-XX-XX-X
+  -X-XX----X
+  IXXXXXXXOX
+`);
+maps.push(`
+  XXXXXXXXXX
+  ---------X
+  -XXXXXXX-X
+  -X---XXX-X
+  -X-X-XXX-X
+  -X-X-IXX-X
+  -X-XXXXX-X
+  -X-XXXXX-X
+  -X-------X
+  OXXXXXXXXX
+`);

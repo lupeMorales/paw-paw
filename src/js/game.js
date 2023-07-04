@@ -25,7 +25,7 @@ let actualMapLevel;
 let canvasSize;
 let elementSize;
 
-let level = 6;
+let level = 0;
 let totalLifes = 3;
 
 let timeStart;
@@ -220,7 +220,7 @@ function validateCollisions() {
 
   if (collision) {
     game.fillText(emojis["BOMB_COLLISION"], playerPosition.x, playerPosition.y);
-    totalLifes > 0 ? crashOver() : gameOver();
+    totalLifes >= 1 ? crashOver() : setTimeout(gameOver, 1000);
   }
 }
 
@@ -268,8 +268,10 @@ function gameOver() {
   clearCanvas();
   renderMessage(messages.gameOver);
   clearInterval(timeInterval);
-
-  setTimeout(modal.classList.add("active"), 1000);
+  function showModal() {
+    modal.classList.add("active");
+  }
+  setTimeout(showModal, 1500);
 }
 function levelUp() {
   level++;

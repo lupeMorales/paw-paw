@@ -86,12 +86,12 @@ maps.push(`
 maps.push(`
   XXXXXXXXXX
   XXX------X
-  XXX-XXXX-X
-  ----XXXX-X
-  -XXX--XX-X
-  -XXX--XX-X
-  -X-XX-XX-X
-  -X-XX-XX-X
+  XXX-XXX-XX
+  ----XXX-XX
+  -XXX--X-XX
+  -X----X-XX
+  -X-XX-X-XX
+  -X-XX-X-XX
   -X-XX----X
   IXXXXXXXOX
 `);

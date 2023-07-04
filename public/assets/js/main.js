@@ -20,15 +20,12 @@ const modalBlock = document.querySelector(".js-modal-block");
 const btnYes = document.querySelectorAll(".js-yes");
 const btnNo = document.querySelectorAll(".js-no");
 
-if (btnYes instanceof NodeList) {
-  console.log("ok");
-}
 let actualMapLevel;
-console.log("Aló mija");
+
 let canvasSize;
 let elementSize;
 
-let level = 0;
+let level = 6;
 let totalLifes = 3;
 
 let timeStart;
@@ -323,7 +320,7 @@ function winGame() {
 }
 
 function reload() {
-  console.log("NO MISIELA");
+  location.reload();
 }
 // events
 
@@ -441,12 +438,12 @@ maps.push(`
 maps.push(`
   XXXXXXXXXX
   XXX------X
-  XXX-XXXX-X
-  ----XXXX-X
-  -XXX--XX-X
-  -XXX--XX-X
-  -X-XX-XX-X
-  -X-XX-XX-X
+  XXX-XXX-XX
+  ----XXX-XX
+  -XXX--X-XX
+  -X----X-XX
+  -X-XX-X-XX
+  -X-XX-X-XX
   -X-XX----X
   IXXXXXXXOX
 `);

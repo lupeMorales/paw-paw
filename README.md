@@ -22,6 +22,7 @@ Paw Paw es un juego en 2d que consiste en guiar a un cachorrito a través del te
 ### Video-demo
 
 ![](./src/images/pawpaw-crash.gif)
+![](./src/images/pawpaw.mp4)
 
 ## Instalación:
 
